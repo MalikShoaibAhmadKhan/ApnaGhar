@@ -1,346 +1,196 @@
-# Real Estate Search Portal
+<div align="center">
 
-A full-stack web application for a real estate search portal where users can browse properties, save favorites, and manage their property searches.
+# 🏡 ApnaGhar - Real Estate Search Portal
 
-## 🎯 Features
+<p align="center">
+  <img src="https://img.shields.io/badge/.NET-8.0-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt=".NET 8" />
+  <img src="https://img.shields.io/badge/React-19.0-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React 19" />
+  <img src="https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" />
+  <img src="https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
+</p>
 
-### Public Access
+<p align="center">
+  <strong>A modern, full-stack real estate platform for browsing, searching, and managing property listings</strong>
+</p>
 
-- Browse and search property listings
-- Filter properties by price, bedrooms, suburb, and listing type (Sale/Rent)
-- View detailed property information with images
-- Responsive design with smooth animations
+<p align="center">
+  <a href="#-features">Features</a> •
+  <a href="#-quick-start">Quick Start</a> •
+  <a href="#-tech-stack">Tech Stack</a> •
+  <a href="#-api-endpoints">API</a> •
+  <a href="#-contributing">Contributing</a>
+</p>
 
-### Authenticated Users (Buyers)
+---
 
-- User registration and JWT-based authentication
-- Save/unsave properties to favorites
-- View saved properties list
-- Track recently viewed properties
-- Protected routes for authenticated features
+</div>
 
-## 🧱 Property Data Model
+## ✨ Features
 
-Each property includes:
+### 🌐 Public Access
+- **Property Browsing** - Explore extensive property listings with rich media
+- **Smart Search** - Real-time search with advanced filtering
+- **Property Comparison** - Compare multiple properties side-by-side
+- **Responsive Design** - Seamless experience across all devices
 
-- Title and description
-- Address (city/suburb)
-- Price (sale or rental)
-- Listing type (Rent or Sale)
-- Bedrooms, bathrooms, car spots
-- Multiple image URLs
-- Property specifications
+### 🔐 Authenticated Users
+- **User Authentication** - Secure JWT-based authentication
+- **Favorites Management** - Save and organize favorite properties
+- **Recently Viewed** - Track your browsing history
+- **Property Management** - Add, edit, and delete property listings
+
+## 🚀 Quick Start
+
+### 🐳 Docker Setup (Recommended)
+
+```bash
+# Clone the repository
+git clone https://github.com/MalikShoaibAhmadKhan/ApnaGhar.git
+cd ApnaGhar
+
+# Start everything with Docker
+./docker-start.sh    # Linux/macOS
+docker-start.bat     # Windows
+```
+
+**Access the application:**
+- 🌐 **Application**: http://localhost:3000
+- 🗄️ **Database Admin**: http://localhost:8081
+- 📡 **API**: http://localhost:5000
 
 ## 🛠 Tech Stack
 
-### Backend (.NET 8)
+<table>
+  <tr>
+    <td align="center" width="96">
+      <img src="https://techstack-generator.vercel.app/csharp-icon.svg" alt="C#" width="65" height="65" />
+      <br>C#
+    </td>
+    <td align="center" width="96">
+      <img src="https://techstack-generator.vercel.app/react-icon.svg" alt="React" width="65" height="65" />
+      <br>React
+    </td>
+    <td align="center" width="96">
+      <img src="https://techstack-generator.vercel.app/mysql-icon.svg" alt="MySQL" width="65" height="65" />
+      <br>MySQL
+    </td>
+    <td align="center" width="96">
+      <img src="https://techstack-generator.vercel.app/docker-icon.svg" alt="Docker" width="65" height="65" />
+      <br>Docker
+    </td>
+  </tr>
+</table>
 
-- **Framework:** ASP.NET Core Web API
-- **Database:** MySQL with Entity Framework Core
-- **Authentication:** JWT Bearer tokens
-- **Architecture:** Clean layered architecture (Controllers → Services → Repositories)
-- **Mapping:** AutoMapper for DTOs
-- **Validation:** Data annotations
+### Backend
+- **.NET 8 Web API** with Entity Framework Core
+- **JWT Authentication** for secure access
+- **Repository Pattern** for clean architecture
+- **AutoMapper** for object mapping
 
-### Frontend (React)
-
-- **Framework:** React 19 with Vite
-- **Routing:** React Router DOM
-- **UI Library:** Material-UI (MUI)
-- **HTTP Client:** Axios
-- **Animations:** Framer Motion
-- **State Management:** React hooks and context
+### Frontend
+- **React 19 + Vite** for fast development
+- **Material-UI** for beautiful components
+- **React Router** for navigation
+- **Axios** for API communication
 
 ## 📦 Project Structure
 
 ```
+ApnaGhar/
 ├── backend/
-│   └── RealEstate.API/
-│       ├── Controllers/          # API endpoints
-│       ├── DTOs/                # Data transfer objects
-│       ├── Entities/            # Database models
-│       ├── Data/                # DbContext and seed data
-│       ├── Repositories/        # Data access layer
-│       ├── Services/            # Business logic
-│       ├── Interfaces/          # Contracts
-│       └── Helpers/             # AutoMapper profiles
+│   └── RealEstate.API/       # .NET Web API
 ├── frontend/
-│   └── src/
-│       ├── components/          # Reusable UI components
-│       ├── pages/              # Route components
-│       ├── services/           # API service layer
-│       ├── hooks/              # Custom React hooks
-│       └── assets/             # Static assets
-└── docker-compose.yml          # MySQL database setup
+│   └── src/                  # React application
+├── docker-compose.yml        # Docker configuration
+└── README.md                 # Documentation
 ```
 
-## 🚀 Setup and Installation
+## 🔧 Manual Setup
 
-### 🐳 Docker Setup (Recommended)
-
-The easiest way to run the entire application:
-
-#### Prerequisites
-
-- Docker Desktop or Docker Engine (20.10+)
-- Docker Compose (2.0+)
-
-#### Quick Start
-
-```bash
-# Linux/macOS
-./docker-start.sh
-
-# Windows
-docker-start.bat
-
-# Or manually
-docker-compose up --build -d
-```
-
-#### Access Points
-
-- **Application**: http://localhost:3000
-- **Database Admin**: http://localhost:8081 (realuser/password123)
-
-See [DOCKER_SETUP.md](DOCKER_SETUP.md) for detailed Docker instructions.
-
----
-
-### 🛠️ Manual Setup (Development)
-
-#### Prerequisites
-
+### Prerequisites
 - .NET 8 SDK
-- Node.js (v18 or higher)
-- Docker (for MySQL database)
+- Node.js 18+
+- Docker Desktop
 
-#### Database Setup
+### Database Setup
+```bash
+docker-compose -f docker-compose.dev.yml up -d
+```
 
-1. **Start MySQL with Docker:**
+### Backend Setup
+```bash
+cd backend/RealEstate.API
+dotnet restore
+dotnet ef database update
+dotnet run
+```
 
-   ```bash
-   docker-compose -f docker-compose.dev.yml up -d
-   ```
+### Frontend Setup
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-   This will start MySQL on port 3307 and phpMyAdmin on port 8081.
-
-2. **Access phpMyAdmin (optional):**
-   - URL: http://localhost:8081
-   - Username: realuser
-   - Password: password123
-
-#### Backend Setup
-
-1. **Navigate to backend directory:**
-
-   ```bash
-   cd backend/RealEstate.API
-   ```
-
-2. **Install EF Core tools (if not already installed):**
-
-   ```bash
-   dotnet tool install --global dotnet-ef
-   ```
-
-3. **Create and run migrations:**
-
-   ```bash
-   dotnet ef migrations add InitialCreate
-   dotnet ef database update
-   ```
-
-4. **Run the backend:**
-   ```bash
-   dotnet run
-   ```
-   The API will be available at `https://localhost:5001` and `http://localhost:5000`
-
-#### Frontend Setup
-
-1. **Navigate to frontend directory:**
-
-   ```bash
-   cd frontend
-   ```
-
-2. **Install dependencies:**
-
-   ```bash
-   npm install
-   ```
-
-3. **Start the development server:**
-   ```bash
-   npm run dev
-   ```
-   The frontend will be available at `http://localhost:5173`
-
-## 🔐 API Endpoints
+## 📡 API Endpoints
 
 ### Authentication
-
-- `POST /api/auth/register` - User registration
+- `POST /api/auth/register` - Register new user
 - `POST /api/auth/login` - User login
 
 ### Properties
-
-- `GET /api/properties` - Get all properties (with optional filters)
+- `GET /api/properties` - Get all properties
 - `GET /api/properties/{id}` - Get property by ID
-- `POST /api/properties` - Create property (authenticated)
-- `PUT /api/properties/{id}` - Update property (authenticated)
-- `DELETE /api/properties/{id}` - Delete property (authenticated)
+- `POST /api/properties` - Create property (auth required)
+- `PUT /api/properties/{id}` - Update property (auth required)
+- `DELETE /api/properties/{id}` - Delete property (auth required)
 
 ### Favorites
-
-- `GET /api/favorites` - Get user's favorite properties (authenticated)
-- `POST /api/favorites/{propertyId}` - Add property to favorites (authenticated)
-- `DELETE /api/favorites/{propertyId}` - Remove property from favorites (authenticated)
-
-### Recently Viewed
-
-- `GET /api/recentlyviewed` - Get recently viewed properties (authenticated)
-- `POST /api/recentlyviewed/{propertyId}` - Record property view (authenticated)
-
-## 🎨 Features in Detail
-
-### Property Search & Filtering
-
-- Search by suburb/location
-- Filter by price range (min/max)
-- Filter by number of bedrooms
-- Filter by listing type (Sale/Rent)
-- Real-time search results
-
-### User Authentication
-
-- Secure JWT-based authentication
-- Password hashing with HMACSHA512
-- Token expiration handling
-- Protected routes and API endpoints
-
-### Favorites System
-
-- Add/remove properties from favorites
-- Persistent favorites storage
-- Visual indicators for favorited properties
-- Dedicated favorites page
+- `GET /api/favorites` - Get user favorites (auth required)
+- `POST /api/favorites/{id}` - Add to favorites (auth required)
+- `DELETE /api/favorites/{id}` - Remove from favorites (auth required)
 
 ### Recently Viewed
+- `GET /api/recentlyviewed` - Get recently viewed (auth required)
+- `POST /api/recentlyviewed/{id}` - Record property view (auth required)
 
-- Automatic tracking of viewed properties
-- Chronological ordering
-- Duplicate prevention with timestamp updates
-- Limited to recent 10 properties
+## 🧪 Test Credentials
 
-## 🔧 Configuration
+| Role | Email | Password |
+|------|-------|----------|
+| Admin | admin@realestate.com | admin123 |
+| User | user@realestate.com | user123 |
 
-### Backend Configuration (appsettings.json)
+## 🚢 Deployment
 
-```json
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost;Port=3307;Database=RealEstateDb;User=realuser;Password=password123;"
-  },
-  "Jwt": {
-    "Key": "YOUR_SECRET_KEY_HERE",
-    "Issuer": "RealEstate.API",
-    "Audience": "RealEstate.API"
-  }
-}
+### Production with Docker
+```bash
+docker-compose up --build -d
 ```
 
-### Frontend Configuration (vite.config.js)
-
-The frontend is configured to proxy API requests to the backend:
-
-```javascript
-server: {
-  proxy: {
-    '/api': {
-      target: 'http://localhost:5000',
-      changeOrigin: true,
-      secure: false,
-    },
-  },
-}
-```
-
-## 🧪 Testing
-
-### Test Users (Seeded Data)
-
-- **Admin:** admin@realestate.com / admin123
-- **User:** user@realestate.com / user123
-
-### Sample Properties
-
-The application includes seeded sample properties with various types:
-
-- Downtown apartments
-- Suburban family homes
-- Luxury penthouses
-- Studio apartments
-- Rental properties
-
-## 🚀 Deployment
-
-### Production Considerations
-
-1. **Security:**
-
-   - Change JWT secret key
-   - Use environment variables for sensitive data
-   - Enable HTTPS
-   - Implement rate limiting
-
-2. **Database:**
-
-   - Use production database connection
-   - Enable connection pooling
-   - Set up database backups
-
-3. **Frontend:**
-   - Build for production: `npm run build`
-   - Configure proper API base URL
-   - Enable compression and caching
+### Environment Variables
+- `ASPNETCORE_ENVIRONMENT` - Set to Production
+- `ConnectionStrings__DefaultConnection` - Database connection
+- `Jwt__Key` - JWT secret key
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## 📝 License
 
 This project is licensed under the MIT License.
 
-## 🐛 Troubleshooting
+## 🐛 Support
 
-### Common Issues
+For issues and questions, please [open an issue](https://github.com/MalikShoaibAhmadKhan/ApnaGhar/issues) on GitHub.
 
-1. **Database Connection Issues:**
+---
 
-   - Ensure MySQL container is running
-   - Check connection string in appsettings.json
-   - Verify database exists and migrations are applied
-
-2. **CORS Issues:**
-
-   - Backend is configured to allow all origins in development
-   - For production, configure specific allowed origins
-
-3. **JWT Token Issues:**
-
-   - Check token expiration
-   - Verify JWT secret key configuration
-   - Clear localStorage if tokens are corrupted
-
-4. **Port Conflicts:**
-   - Backend: Default ports 5000/5001
-   - Frontend: Default port 5173
-   - MySQL: Port 3307 (to avoid conflicts with local MySQL)
-   - phpMyAdmin: Port 8081
+<div align="center">
+  <p>Built with ❤️ by <a href="https://github.com/MalikShoaibAhmadKhan">Malik Shoaib Ahmad Khan</a></p>
+</div>
