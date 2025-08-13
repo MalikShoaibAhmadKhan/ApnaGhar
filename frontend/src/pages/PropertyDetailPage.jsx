@@ -154,7 +154,7 @@ const PropertyDetailPage = () => {
       <Button
         startIcon={<ArrowBack />}
         onClick={() => navigate('/properties')}
-        sx={{ mb: 3, color: '#666' }}
+        sx={{ mb: 3, color: 'text.secondary' }}
       >
         Back to Properties
       </Button>
@@ -188,7 +188,7 @@ const PropertyDetailPage = () => {
                   }}
                 />
                 {property.imageUrls.length > 1 && (
-                  <Box sx={{ p: 2, backgroundColor: '#f5f5f5' }}>
+                  <Box sx={{ p: 2, backgroundColor: 'background.surface' }}>
                     <Grid container spacing={1}>
                       {property.imageUrls.map((url, index) => (
                         <Grid item key={index}>
@@ -221,13 +221,13 @@ const PropertyDetailPage = () => {
               <Box 
                 sx={{ 
                   height: 500, 
-                  backgroundColor: '#f0f0f0',
+                  backgroundColor: 'background.surface',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center'
                 }}
               >
-                <Home sx={{ fontSize: 80, color: '#ccc' }} />
+                <Home sx={{ fontSize: 80, color: 'text.disabled' }} />
               </Box>
             )}
           </MotionPaper>
@@ -251,7 +251,7 @@ const PropertyDetailPage = () => {
                         component="h1" 
                         sx={{ 
                           fontWeight: 'bold',
-                          color: '#1a1a1a',
+                          color: 'text.primary',
                           mb: 1,
                           fontSize: { xs: '2rem', md: '2.5rem' }
                         }}
@@ -259,7 +259,7 @@ const PropertyDetailPage = () => {
                         {property.title}
                       </Typography>
                       <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                        <LocationOn sx={{ color: '#666', mr: 1 }} />
+                        <LocationOn sx={{ color: 'text.secondary', mr: 1 }} />
                         <Typography variant="h6" color="text.secondary">
                           {property.address}
                           {property.suburb && property.city && (
@@ -287,16 +287,16 @@ const PropertyDetailPage = () => {
                             }}
                           >
                             {isFavorite ? 
-                              <Favorite sx={{ color: '#f44336' }} /> : 
-                              <FavoriteBorder sx={{ color: '#666' }} />
+                              <Favorite sx={{ color: 'error.main' }} /> : 
+                              <FavoriteBorder sx={{ color: 'text.secondary' }} />
                             }
                           </IconButton>
                         </Zoom>
                       )}
-                      <IconButton sx={{ backgroundColor: '#f5f5f5' }}>
+                      <IconButton sx={{ backgroundColor: 'background.surface' }}>
                         <Share />
                       </IconButton>
-                      <IconButton sx={{ backgroundColor: '#f5f5f5' }}>
+                      <IconButton sx={{ backgroundColor: 'background.surface' }}>
                         <Print />
                       </IconButton>
                     </Box>
@@ -305,17 +305,17 @@ const PropertyDetailPage = () => {
                   {/* Price and Type */}
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      <AttachMoney sx={{ fontSize: 28, color: '#4caf50', mr: 0.5 }} />
+                      <AttachMoney sx={{ fontSize: 28, color: 'success.main', mr: 0.5 }} />
                       <Typography 
                         variant="h4" 
                         sx={{ 
-                          color: '#4caf50',
+                          color: 'success.main',
                           fontWeight: 'bold'
                         }}
                       >
                         ${property.price.toLocaleString()}
                         {property.listingType === 'Rent' && (
-                          <Typography component="span" variant="h6" sx={{ color: '#666', ml: 1 }}>
+                          <Typography component="span" variant="h6" sx={{ color: 'text.secondary', ml: 1 }}>
                             /month
                           </Typography>
                         )}
@@ -344,7 +344,7 @@ const PropertyDetailPage = () => {
                             transition: 'box-shadow 0.2s ease'
                           }}
                         >
-                          <Box sx={{ color: '#1976d2', mb: 1 }}>
+                          <Box sx={{ color: 'primary.main', mb: 1 }}>
                             {feature.icon}
                           </Box>
                           <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 0.5 }}>
@@ -371,7 +371,7 @@ const PropertyDetailPage = () => {
                     sx={{ 
                       fontSize: '1.1rem', 
                       lineHeight: 1.8,
-                      color: '#444'
+                      color: 'text.primary'
                     }}
                   >
                     {property.description}
@@ -431,7 +431,7 @@ const PropertyDetailPage = () => {
                     Book Inspection
                   </Button>
                   
-                  <Box sx={{ mt: 3, p: 2, backgroundColor: '#f8f9fa', borderRadius: 2 }}>
+                  <Box sx={{ mt: 3, p: 2, backgroundColor: 'background.surface', borderRadius: 2 }}>
                     <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center' }}>
                       Property ID: {property.id}
                     </Typography>

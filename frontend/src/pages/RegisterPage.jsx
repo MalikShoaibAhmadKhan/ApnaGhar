@@ -106,7 +106,7 @@ const RegisterPage = () => {
     <Box
       sx={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        background: (theme) => theme.palette.background.default,
         display: 'flex',
         alignItems: 'center',
         py: 4
@@ -122,8 +122,7 @@ const RegisterPage = () => {
             sx={{ 
               padding: { xs: 3, sm: 5 },
               borderRadius: 4,
-              background: 'rgba(255, 255, 255, 0.95)',
-              backdropFilter: 'blur(10px)',
+              background: (theme) => theme.palette.background.paper,
               boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
             }}
           >
@@ -150,7 +149,7 @@ const RegisterPage = () => {
                 variant="h4" 
                 sx={{ 
                   fontWeight: 'bold',
-                  color: '#1a1a1a',
+                  color: 'text.primary',
                   mb: 1
                 }}
               >
@@ -196,7 +195,7 @@ const RegisterPage = () => {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <Email sx={{ color: '#666' }} />
+                      <Email sx={{ color: 'text.secondary' }} />
                     </InputAdornment>
                   ),
                 }}
@@ -229,7 +228,7 @@ const RegisterPage = () => {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <Lock sx={{ color: '#666' }} />
+                      <Lock sx={{ color: 'text.secondary' }} />
                     </InputAdornment>
                   ),
                   endAdornment: (
@@ -282,7 +281,7 @@ const RegisterPage = () => {
                     sx={{
                       height: 6,
                       borderRadius: 3,
-                      backgroundColor: '#e0e0e0',
+                      backgroundColor: 'action.disabled',
                       '& .MuiLinearProgress-bar': {
                         backgroundColor: getPasswordStrengthColor(passwordStrength),
                         borderRadius: 3
@@ -292,22 +291,22 @@ const RegisterPage = () => {
                   <Box sx={{ display: 'flex', gap: 1, mt: 1, flexWrap: 'wrap' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       {formData.password.length >= 6 ? 
-                        <CheckCircle sx={{ fontSize: 16, color: '#4caf50', mr: 0.5 }} /> :
-                        <Cancel sx={{ fontSize: 16, color: '#f44336', mr: 0.5 }} />
+                        <CheckCircle sx={{ fontSize: 16, color: 'success.main', mr: 0.5 }} /> :
+                        <Cancel sx={{ fontSize: 16, color: 'error.main', mr: 0.5 }} />
                       }
                       <Typography variant="caption">6+ characters</Typography>
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       {/[A-Z]/.test(formData.password) ? 
-                        <CheckCircle sx={{ fontSize: 16, color: '#4caf50', mr: 0.5 }} /> :
-                        <Cancel sx={{ fontSize: 16, color: '#f44336', mr: 0.5 }} />
+                        <CheckCircle sx={{ fontSize: 16, color: 'success.main', mr: 0.5 }} /> :
+                        <Cancel sx={{ fontSize: 16, color: 'error.main', mr: 0.5 }} />
                       }
                       <Typography variant="caption">Uppercase</Typography>
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       {/[0-9]/.test(formData.password) ? 
-                        <CheckCircle sx={{ fontSize: 16, color: '#4caf50', mr: 0.5 }} /> :
-                        <Cancel sx={{ fontSize: 16, color: '#f44336', mr: 0.5 }} />
+                        <CheckCircle sx={{ fontSize: 16, color: 'success.main', mr: 0.5 }} /> :
+                        <Cancel sx={{ fontSize: 16, color: 'error.main', mr: 0.5 }} />
                       }
                       <Typography variant="caption">Number</Typography>
                     </Box>
@@ -334,7 +333,7 @@ const RegisterPage = () => {
                     boxShadow: '0 6px 20px rgba(76,175,80,0.4)'
                   },
                   '&:disabled': {
-                    background: '#ccc'
+                    background: 'action.disabled'
                   },
                   transition: 'all 0.3s ease'
                 }}
@@ -368,12 +367,13 @@ const RegisterPage = () => {
                   sx={{
                     py: 1.2,
                     borderRadius: 2,
-                    borderColor: '#1976d2',
-                    color: '#1976d2',
+                    borderColor: 'primary.main',
+                    color: 'primary.main',
                     fontWeight: 'bold',
                     '&:hover': {
-                      borderColor: '#1565c0',
-                      backgroundColor: 'rgba(25,118,210,0.04)',
+                      borderColor: 'primary.dark',
+                      backgroundColor: 'primary.main',
+                      backgroundOpacity: 0.04,
                       transform: 'translateY(-1px)'
                     },
                     transition: 'all 0.3s ease'

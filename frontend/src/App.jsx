@@ -71,7 +71,7 @@ function AppContent() {
             borderBottom: `1px solid ${theme.palette.divider}`,
           }}
         >
-          <Container maxWidth="xl">
+          <Box sx={{ width: '100%', px: { xs: 2, sm: 3 } }}>
             <Toolbar sx={{ px: { xs: 0, sm: 2 }, minHeight: '70px !important' }}>
               <MotionBox
                 initial={{ opacity: 0, x: -20 }}
@@ -274,7 +274,7 @@ function AppContent() {
                           color: 'primary.main',
                           borderRadius: 3,
                           '&:hover': { 
-                            backgroundColor: '#f5f5f5',
+                            backgroundColor: 'background.surface',
                             transform: 'translateY(-1px)'
                           },
                           transition: 'all 0.2s ease'
@@ -372,7 +372,7 @@ function AppContent() {
                 )}
               </Menu>
             </Toolbar>
-          </Container>
+          </Box>
         </AppBar>
         
         <Box component="main" sx={{ flexGrow: 1, py: 3 }}>

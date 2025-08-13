@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
+import { colors } from './colors';
 
 const ThemeContext = createContext();
 
@@ -30,73 +31,71 @@ const ThemeProvider = ({ children }) => {
     palette: {
       mode: darkMode ? 'dark' : 'light',
       primary: {
-        main: darkMode ? '#64b5f6' : '#1976d2',
-        light: darkMode ? '#90caf9' : '#42a5f5',
-        dark: darkMode ? '#1976d2' : '#1565c0',
+        main: darkMode ? colors.primary[300] : colors.primary[600],
+        light: darkMode ? colors.primary[200] : colors.primary[400],
+        dark: darkMode ? colors.primary[600] : colors.primary[700],
         contrastText: '#ffffff',
       },
       secondary: {
-        main: darkMode ? '#f48fb1' : '#dc004e',
-        light: darkMode ? '#ffc1e3' : '#ff5983',
-        dark: darkMode ? '#c2185b' : '#9a0036',
+        main: darkMode ? colors.secondary[200] : colors.secondary[600],
+        light: darkMode ? colors.secondary[100] : colors.secondary[400],
+        dark: darkMode ? colors.secondary[700] : colors.secondary[800],
         contrastText: '#ffffff',
       },
       background: {
-        default: darkMode ? '#0a0a0a' : '#f8fafc',
-        paper: darkMode ? '#1a1a1a' : '#ffffff',
-        surface: darkMode ? '#2a2a2a' : '#f1f5f9',
+        default: darkMode ? colors.background.dark.default : colors.background.light.default,
+        paper: darkMode ? colors.background.dark.paper : colors.background.light.paper,
+        surface: darkMode ? colors.background.dark.surface : colors.background.light.surface,
       },
       text: {
-        primary: darkMode ? '#ffffff' : '#1e293b',
-        secondary: darkMode ? '#b0bec5' : '#64748b',
-        disabled: darkMode ? '#616161' : '#94a3b8',
+        primary: darkMode ? colors.text.dark.primary : colors.text.light.primary,
+        secondary: darkMode ? colors.text.dark.secondary : colors.text.light.secondary,
+        disabled: darkMode ? colors.text.dark.disabled : colors.text.light.disabled,
       },
       success: {
-        main: darkMode ? '#66bb6a' : '#10b981',
-        light: darkMode ? '#81c784' : '#34d399',
-        dark: darkMode ? '#388e3c' : '#059669',
+        main: darkMode ? colors.success[400] : colors.success[600],
+        light: darkMode ? colors.success[300] : colors.success[400],
+        dark: darkMode ? colors.success[600] : colors.success[700],
         contrastText: '#ffffff',
       },
       warning: {
-        main: darkMode ? '#ffb74d' : '#f59e0b',
-        light: darkMode ? '#ffcc02' : '#fbbf24',
-        dark: darkMode ? '#f57c00' : '#d97706',
+        main: darkMode ? colors.warning[300] : colors.warning[500],
+        light: darkMode ? colors.warning[200] : colors.warning[400],
+        dark: darkMode ? colors.warning[600] : colors.warning[600],
         contrastText: '#ffffff',
       },
       error: {
-        main: darkMode ? '#f44336' : '#ef4444',
-        light: darkMode ? '#e57373' : '#f87171',
-        dark: darkMode ? '#d32f2f' : '#dc2626',
+        main: darkMode ? colors.error[400] : colors.error[500],
+        light: darkMode ? colors.error[300] : colors.error[400],
+        dark: darkMode ? colors.error[600] : colors.error[600],
         contrastText: '#ffffff',
       },
       info: {
-        main: darkMode ? '#29b6f6' : '#0ea5e9',
-        light: darkMode ? '#4fc3f7' : '#38bdf8',
-        dark: darkMode ? '#0288d1' : '#0284c7',
+        main: darkMode ? colors.info[300] : colors.info[500],
+        light: darkMode ? colors.info[200] : colors.info[400],
+        dark: darkMode ? colors.info[600] : colors.info[600],
         contrastText: '#ffffff',
       },
       // Custom colors for consistent branding
       brand: {
-        gradient: darkMode 
-          ? 'linear-gradient(135deg, #64b5f6 0%, #42a5f5 100%)'
-          : 'linear-gradient(135deg, #1976d2 0%, #42a5f5 100%)',
-        gradientHover: darkMode
-          ? 'linear-gradient(135deg, #42a5f5 0%, #2196f3 100%)'
-          : 'linear-gradient(135deg, #1565c0 0%, #1976d2 100%)',
-        surface: darkMode ? '#2a2a2a' : '#f8fafc',
-        border: darkMode ? '#404040' : '#e2e8f0',
+        gradient: darkMode ? colors.gradients.dark.primary : colors.gradients.primary,
+        gradientHover: darkMode ? colors.gradients.dark.primaryHover : colors.gradients.primaryHover,
+        surface: darkMode ? colors.background.dark.surface : colors.background.light.surface,
+        border: darkMode ? colors.border.dark : colors.border.light,
       },
       // Property type colors
       property: {
-        sale: darkMode ? '#66bb6a' : '#10b981',
-        rent: darkMode ? '#ffb74d' : '#f59e0b',
-        sold: darkMode ? '#9e9e9e' : '#6b7280',
+        sale: colors.property.sale,
+        rent: colors.property.rent,
+        sold: colors.property.sold,
       },
       // Status colors
       status: {
-        online: darkMode ? '#66bb6a' : '#10b981',
-        offline: darkMode ? '#9e9e9e' : '#6b7280',
-        pending: darkMode ? '#ffb74d' : '#f59e0b',
+        online: colors.status.online,
+        offline: colors.status.offline,
+        pending: colors.status.pending,
+        active: colors.status.active,
+        inactive: colors.status.inactive,
       },
     },
     typography: {
@@ -156,15 +155,16 @@ const ThemeProvider = ({ children }) => {
             background: darkMode 
               ? 'linear-gradient(135deg, #64b5f6 0%, #42a5f5 100%)'
               : 'linear-gradient(135deg, #1976d2 0%, #42a5f5 100%)',
-            color: 'white',
+            color: '#ffffff !important',
             '&:hover': {
               background: darkMode
                 ? 'linear-gradient(135deg, #42a5f5 0%, #2196f3 100%)'
                 : 'linear-gradient(135deg, #1565c0 0%, #1976d2 100%)',
+              color: '#ffffff !important',
             },
             '&:disabled': {
               background: darkMode ? '#424242' : '#e2e8f0',
-              color: darkMode ? '#9e9e9e' : '#94a3b8',
+              color: darkMode ? '#9e9e9e !important' : '#94a3b8 !important',
             },
           },
           outlined: {

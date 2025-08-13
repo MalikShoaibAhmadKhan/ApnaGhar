@@ -81,7 +81,7 @@ const FloatingActionButton = () => {
         setIsMenuOpen(false);
       },
       show: isAuthenticated,
-      color: '#4caf50'
+      color: 'success.main'
     },
     {
       icon: darkMode ? <LightMode /> : <DarkMode />,
@@ -91,7 +91,7 @@ const FloatingActionButton = () => {
         setIsMenuOpen(false);
       },
       show: true,
-      color: '#ff9800'
+      color: 'warning.main'
     },
     {
       icon: <Home />,
@@ -101,7 +101,7 @@ const FloatingActionButton = () => {
         setIsMenuOpen(false);
       },
       show: true,
-      color: '#2196f3'
+      color: 'info.main'
     },
     {
       icon: <Search />,
@@ -111,7 +111,7 @@ const FloatingActionButton = () => {
         setIsMenuOpen(false);
       },
       show: true,
-      color: '#9c27b0'
+      color: 'secondary.main'
     },
     {
       icon: <Favorite />,
@@ -121,14 +121,14 @@ const FloatingActionButton = () => {
         setIsMenuOpen(false);
       },
       show: isAuthenticated,
-      color: '#f44336'
+      color: 'error.main'
     },
     {
       icon: <Share />,
       name: 'Share',
       onClick: handleShare,
       show: true,
-      color: '#607d8b'
+      color: 'text.secondary'
     },
   ].filter(action => action.show);
 

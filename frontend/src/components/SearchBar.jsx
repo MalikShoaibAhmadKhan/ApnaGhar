@@ -160,10 +160,10 @@ const SearchBar = ({ onSearch, placeholder = "Search properties, locations, or f
           onClick={() => handleSearch()}
           sx={{ 
             p: '10px',
-            background: 'linear-gradient(135deg, #1976d2 0%, #42a5f5 100%)',
+            background: (theme) => theme.palette.brand?.gradient || 'linear-gradient(135deg, #1976d2 0%, #42a5f5 100%)',
             color: 'white',
             '&:hover': {
-              background: 'linear-gradient(135deg, #1565c0 0%, #1976d2 100%)',
+              background: (theme) => theme.palette.brand?.gradientHover || 'linear-gradient(135deg, #1565c0 0%, #1976d2 100%)',
             }
           }}
         >

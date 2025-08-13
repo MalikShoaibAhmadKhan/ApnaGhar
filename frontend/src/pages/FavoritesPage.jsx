@@ -131,7 +131,7 @@ const FavoritesPage = () => {
           mt: 8,
           mb: 8
         }}>
-          <CircularProgress size={60} sx={{ mb: 2, color: '#f44336' }} />
+          <CircularProgress size={60} sx={{ mb: 2, color: 'error.main' }} />
           <Typography variant="h6" color="text.secondary">
             Loading your favorite properties...
           </Typography>
@@ -144,12 +144,14 @@ const FavoritesPage = () => {
               p: 6,
               textAlign: 'center',
               borderRadius: 4,
-              backgroundColor: '#ffebee',
-              border: '2px dashed #e57373'
+              backgroundColor: 'error.light',
+              backgroundOpacity: 0.1,
+              border: '2px dashed',
+              borderColor: 'error.light'
             }}
           >
-            <FavoriteIcon sx={{ fontSize: 80, color: '#e57373', mb: 2 }} />
-            <Typography variant="h5" sx={{ mb: 2, color: '#c62828', fontWeight: 'bold' }}>
+            <FavoriteIcon sx={{ fontSize: 80, color: 'error.light', mb: 2 }} />
+            <Typography variant="h5" sx={{ mb: 2, color: 'error.dark', fontWeight: 'bold' }}>
               No Favorite Properties Yet
             </Typography>
             <Typography variant="body1" color="text.secondary" sx={{ mb: 4, maxWidth: 500, mx: 'auto' }}>
@@ -185,7 +187,7 @@ const FavoritesPage = () => {
           {/* Results Header */}
           <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#1a1a1a' }}>
+              <Typography variant="h5" sx={{ fontWeight: 'bold', color: 'text.primary' }}>
                 {favorites.length} Favorite {favorites.length === 1 ? 'Property' : 'Properties'}
               </Typography>
               <Chip
@@ -245,7 +247,7 @@ const FavoritesPage = () => {
                 background: 'linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%)'
               }}
             >
-              <Typography variant="h6" sx={{ mb: 2, color: '#c62828', fontWeight: 'bold' }}>
+              <Typography variant="h6" sx={{ mb: 2, color: 'error.dark', fontWeight: 'bold' }}>
                 Keep Exploring!
               </Typography>
               <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>

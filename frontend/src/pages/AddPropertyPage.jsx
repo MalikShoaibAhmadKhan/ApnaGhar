@@ -156,10 +156,15 @@ const AddPropertyPage = () => {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      // Convert images to base64 or upload to a service
-      // For now, we'll use placeholder URLs
-      const imageUrls = images.map((_, index) => 
-        `https://via.placeholder.com/800x600?text=Property+Image+${index + 1}`
+      // Convert images to base64 URLs for storage
+      const imageUrls = await Promise.all(
+        images.map(image => {
+          return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onload = (e) => resolve(e.target.result);
+            reader.readAsDataURL(image);
+          });
+        })
       );
 
       const propertyData = {

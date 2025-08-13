@@ -65,6 +65,10 @@ const PropertyCard = ({
             component="img"
             sx={{ width: 300, flexShrink: 0 }}
             image={property.imageUrls?.[0] || 'https://via.placeholder.com/300x200?text=No+Image'}
+            onError={(e) => {
+              console.log('List view image failed to load:', property.imageUrls?.[0]);
+              e.target.src = 'https://via.placeholder.com/300x200?text=No+Image';
+            }}
             alt={property.title}
           />
           <CardContent sx={{ flex: 1, p: 3 }}>
@@ -136,6 +140,10 @@ const PropertyCard = ({
       transition={{ duration: 0.3 }}
       whileHover={{ y: -8, transition: { duration: 0.2 } }}
       sx={{ 
+        width: '100%',
+        height: '100%',
+        minHeight: 480,
+        maxHeight: 480,
         maxWidth: 345, 
         margin: 'auto',
         borderRadius: 3,
@@ -145,7 +153,9 @@ const PropertyCard = ({
           boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
         },
         position: 'relative',
-        background: theme.palette.background.paper
+        background: theme.palette.background.paper,
+        display: 'flex',
+        flexDirection: 'column'
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -224,6 +234,10 @@ const PropertyCard = ({
               component="img"
               height="220"
               image={property.imageUrls?.[0] || 'https://via.placeholder.com/300x220?text=No+Image'}
+              onError={(e) => {
+                console.log('Image failed to load:', property.imageUrls?.[0]);
+                e.target.src = 'https://via.placeholder.com/300x220?text=No+Image';
+              }}
               alt={property.title}
               onLoad={() => setImageLoaded(true)}
               sx={{
@@ -247,7 +261,14 @@ const PropertyCard = ({
           )}
         </Box>
         
-        <CardContent sx={{ p: 2.5 }}>
+        <CardContent sx={{ 
+          p: 2.5, 
+          flexGrow: 1, 
+          display: 'flex', 
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          height: '100%'
+        }}>
           <Typography 
             gutterBottom 
             variant="h6" 
@@ -295,7 +316,7 @@ const PropertyCard = ({
             </Typography>
           </Box>
           
-          <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+          <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mt: 'auto' }}>
             <Tooltip title="Bedrooms">
               <Chip
                 icon={<Bed sx={{ fontSize: 16 }} />}

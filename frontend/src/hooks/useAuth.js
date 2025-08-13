@@ -6,21 +6,35 @@ const useAuth = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token && !authService.isTokenExpired()) {
-      setIsAuthenticated(true);
-      setUser(authService.getCurrentUser());
-    } else {
-      authService.logout();
-      setIsAuthenticated(false);
-      setUser(null);
-    }
+    const checkAuth = () => {
+      const token = localStorage.getItem('token');
+      if (token && !authService.isTokenExpired()) {
+        setIsAuthenticated(true);
+        setUser(authService.getCurrentUser());
+      } else {
+        authService.logout();
+        setIsAuthenticated(false);
+        setUser(null);
+      }
+    };
+
+    checkAuth();
+
+    // Listen for auth changes
+    const handleAuthChange = () => {
+      checkAuth();
+    };
+
+    window.addEventListener('auth-change', handleAuthChange);
+    return () => window.removeEventListener('auth-change', handleAuthChange);
   }, []);
 
   const login = (token) => {
     localStorage.setItem('token', token);
     setIsAuthenticated(true);
     setUser(authService.getCurrentUser());
+    // Force a re-render of the entire app
+    window.dispatchEvent(new Event('auth-change'));
   };
 
   const logout = () => {

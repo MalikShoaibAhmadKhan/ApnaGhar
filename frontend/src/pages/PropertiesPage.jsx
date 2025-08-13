@@ -210,8 +210,8 @@ const PropertiesPage = () => {
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
-            <FilterList sx={{ mr: 1, color: '#1976d2' }} />
-            <Typography variant="h6" sx={{ color: '#1976d2', fontWeight: 'bold', flexGrow: 1 }}>
+            <FilterList sx={{ mr: 1, color: 'primary.main' }} />
+            <Typography variant="h6" sx={{ color: 'primary.main', fontWeight: 'bold', flexGrow: 1 }}>
               Search Filters
             </Typography>
             {hasActiveFilters && (
@@ -241,7 +241,7 @@ const PropertiesPage = () => {
                   '& .MuiOutlinedInput-root': {
                     borderRadius: 2,
                     '&:hover fieldset': {
-                      borderColor: '#1976d2',
+                      borderColor: 'primary.main',
                     },
                   }
                 }}
@@ -412,7 +412,7 @@ const PropertiesPage = () => {
         <>
           {/* Results Header */}
           <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
-            <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#1a1a1a' }}>
+            <Typography variant="h5" sx={{ fontWeight: 'bold', color: 'text.primary' }}>
               {properties.length > 0 ? (
                 <>Found {properties.length} Properties</>
               ) : (
@@ -467,11 +467,12 @@ const PropertiesPage = () => {
           {properties.length > 0 ? (
             <Grid container spacing={3}>
               {properties.map((property, index) => (
-                <Grid item key={property.id} xs={12} sm={6} lg={4}>
+                <Grid item key={property.id} xs={12} sm={6} lg={4} sx={{ display: 'flex' }}>
                   <MotionBox
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
+                    sx={{ width: '100%', display: 'flex' }}
                   >
                     <PropertyCard
                       property={property}
@@ -492,11 +493,11 @@ const PropertiesPage = () => {
                 p: 6,
                 textAlign: 'center',
                 borderRadius: 3,
-                backgroundColor: '#f8f9fa'
+                backgroundColor: 'background.surface'
               }}
             >
-              <HomeIcon sx={{ fontSize: 80, color: '#ccc', mb: 2 }} />
-              <Typography variant="h5" sx={{ mb: 2, color: '#666' }}>
+              <HomeIcon sx={{ fontSize: 80, color: 'text.disabled', mb: 2 }} />
+              <Typography variant="h5" sx={{ mb: 2, color: 'text.secondary' }}>
                 No Properties Found
               </Typography>
               <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>

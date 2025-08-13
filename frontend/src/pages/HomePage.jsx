@@ -288,7 +288,7 @@ const HomePage = () => {
             gutterBottom
             sx={{ 
               fontWeight: 'bold',
-              color: '#1a1a1a',
+              color: 'text.primary',
               mb: 2
             }}
           >
@@ -321,7 +321,7 @@ const HomePage = () => {
                 <Box
                   sx={{
                     height: 80,
-                    background: feature.color,
+                    background: (theme) => `${theme.palette[feature.colorKey]?.main}15` || theme.palette.primary.light + '15',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center'
@@ -346,7 +346,7 @@ const HomePage = () => {
       {/* CTA Section */}
       <Box
         sx={{
-          background: 'linear-gradient(135deg, #1976d2 0%, #42a5f5 100%)',
+          background: (theme) => theme.palette.brand?.gradient || 'linear-gradient(135deg, #1976d2 0%, #42a5f5 100%)',
           color: 'white',
           py: 8
         }}
@@ -366,15 +366,15 @@ const HomePage = () => {
               size="large"
               endIcon={<ArrowForward />}
               sx={{
-                backgroundColor: 'white',
-                color: '#1976d2',
+                backgroundColor: 'background.paper',
+                color: 'primary.main',
                 px: 4,
                 py: 1.5,
                 fontSize: '1.1rem',
                 fontWeight: 'bold',
                 borderRadius: 3,
                 '&:hover': {
-                  backgroundColor: '#f5f5f5',
+                  backgroundColor: 'background.surface',
                   transform: 'translateY(-2px)',
                   boxShadow: '0 8px 25px rgba(0,0,0,0.2)'
                 },

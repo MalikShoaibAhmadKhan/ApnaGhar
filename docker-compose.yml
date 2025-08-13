@@ -14,7 +14,17 @@ services:
     networks:
       - real-estate-network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "realuser", "-ppassword123"]
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "localhost",
+          "-u",
+          "realuser",
+          "-ppassword123",
+        ]
       timeout: 20s
       retries: 10
 
@@ -52,7 +62,15 @@ services:
     networks:
       - real-estate-network
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80/"]
+      test:
+        [
+          "CMD",
+          "wget",
+          "--no-verbose",
+          "--tries=1",
+          "--spider",
+          "http://localhost:80/",
+        ]
       timeout: 10s
       retries: 3
 

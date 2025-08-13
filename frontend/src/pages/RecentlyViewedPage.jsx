@@ -127,7 +127,7 @@ const RecentlyViewedPage = () => {
           mt: 8,
           mb: 8
         }}>
-          <CircularProgress size={60} sx={{ mb: 2, color: '#ff9800' }} />
+          <CircularProgress size={60} sx={{ mb: 2, color: 'warning.main' }} />
           <Typography variant="h6" color="text.secondary">
             Loading your recently viewed properties...
           </Typography>
@@ -140,12 +140,14 @@ const RecentlyViewedPage = () => {
               p: 6,
               textAlign: 'center',
               borderRadius: 4,
-              backgroundColor: '#fff8e1',
-              border: '2px dashed #ffb74d'
+              backgroundColor: 'warning.light',
+              backgroundOpacity: 0.1,
+              border: '2px dashed',
+              borderColor: 'warning.light'
             }}
           >
-            <HomeIcon sx={{ fontSize: 80, color: '#ffb74d', mb: 2 }} />
-            <Typography variant="h5" sx={{ mb: 2, color: '#e65100', fontWeight: 'bold' }}>
+            <HomeIcon sx={{ fontSize: 80, color: 'warning.light', mb: 2 }} />
+            <Typography variant="h5" sx={{ mb: 2, color: 'warning.dark', fontWeight: 'bold' }}>
               No Recently Viewed Properties
             </Typography>
             <Typography variant="body1" color="text.secondary" sx={{ mb: 4, maxWidth: 500, mx: 'auto' }}>
@@ -180,7 +182,7 @@ const RecentlyViewedPage = () => {
         <>
           {/* Results Header */}
           <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#1a1a1a' }}>
+            <Typography variant="h5" sx={{ fontWeight: 'bold', color: 'text.primary' }}>
               {recentlyViewed.length} Recently Viewed {recentlyViewed.length === 1 ? 'Property' : 'Properties'}
             </Typography>
             <Typography variant="body2" color="text.secondary">
@@ -219,7 +221,7 @@ const RecentlyViewedPage = () => {
                 background: 'linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%)'
               }}
             >
-              <Typography variant="h6" sx={{ mb: 2, color: '#e65100', fontWeight: 'bold' }}>
+              <Typography variant="h6" sx={{ mb: 2, color: 'warning.dark', fontWeight: 'bold' }}>
                 Looking for More Properties?
               </Typography>
               <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
