@@ -93,7 +93,7 @@ function AppContent() {
                   }}
                 >
                   <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-                    🏠 Real Estate Portal
+                    🏠 ApnaGhar
                   </Link>
                 </Typography>
               </MotionBox>
@@ -396,10 +396,10 @@ function AppContent() {
         >
           <Container maxWidth="lg">
             <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>
-              Real Estate Portal
+              ApnaGhar
             </Typography>
             <Typography variant="body2" sx={{ opacity: 0.8 }}>
-              © 2024 Real Estate Portal. All rights reserved. | Find your dream home today!
+              © 2024 ApnaGhar. All rights reserved. | Find your dream home today!
             </Typography>
           </Container>
         </Box>

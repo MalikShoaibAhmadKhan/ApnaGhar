@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { 
   Container, 
   Grid, 
@@ -48,7 +48,7 @@ const PropertiesPage = () => {
   const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'list'
   const [selectedForComparison, setSelectedForComparison] = useState([]);
   const [showComparison, setShowComparison] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [, setSearchQuery] = useState('');
   const [filters, setFilters] = useState({
     suburb: '',
     minPrice: '',
@@ -57,17 +57,18 @@ const PropertiesPage = () => {
     listingType: '',
   });
 
-  const fetchProperties = async () => {
+  const fetchProperties = useCallback(async () => {
     setLoading(true);
     try {
       const response = await propertyService.getProperties(filters);
       setProperties(response.data);
+      // Don't reset comparison selection when fetching properties
     } catch (error) {
       console.error('Failed to fetch properties', error);
     } finally {
       setLoading(false);
     }
-  };
+  }, [filters]);
 
   const handleToggleFavorite = async (propertyId) => {
     if (!isAuthenticated) {
@@ -100,12 +101,17 @@ const PropertiesPage = () => {
   };
 
   const toggleComparison = (property) => {
+    console.log('Toggle comparison for property:', property.id, 'Current selection:', selectedForComparison);
     setSelectedForComparison(prev => {
       const isSelected = prev.find(p => p.id === property.id);
       if (isSelected) {
-        return prev.filter(p => p.id !== property.id);
+        const newSelection = prev.filter(p => p.id !== property.id);
+        console.log('Removed from comparison, new selection:', newSelection);
+        return newSelection;
       } else if (prev.length < 3) {
-        return [...prev, property];
+        const newSelection = [...prev, property];
+        console.log('Added to comparison, new selection:', newSelection);
+        return newSelection;
       } else {
         showError('You can compare up to 3 properties at once');
         return prev;
@@ -114,6 +120,7 @@ const PropertiesPage = () => {
   };
 
   const openComparison = () => {
+    console.log('Opening comparison with:', selectedForComparison.length, 'properties');
     if (selectedForComparison.length < 2) {
       showError('Please select at least 2 properties to compare');
       return;
@@ -135,7 +142,7 @@ const PropertiesPage = () => {
       }
     };
     loadData();
-  }, [isAuthenticated]);
+  }, [fetchProperties, isAuthenticated]);
 
   const handleFilterChange = (e) => {
     setFilters({ ...filters, [e.target.name]: e.target.value });

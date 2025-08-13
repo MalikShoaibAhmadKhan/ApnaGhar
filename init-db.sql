@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS Properties (
     Bathrooms INT NOT NULL,
     CarSpots INT NOT NULL,
     Description TEXT NOT NULL,
-    ImageUrls TEXT,
+    ImageUrls LONGTEXT,
     UserId INT NOT NULL,
     FOREIGN KEY (UserId) REFERENCES Users(Id) ON DELETE CASCADE,
     INDEX idx_listing_type (ListingType),

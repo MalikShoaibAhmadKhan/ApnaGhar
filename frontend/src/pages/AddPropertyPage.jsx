@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Container,
   Paper,
@@ -20,8 +20,8 @@ import {
   Step,
   StepLabel,
   StepContent,
-  Fade
-} from '@mui/material';
+  Fade,
+} from "@mui/material";
 import {
   CloudUpload,
   Delete,
@@ -30,13 +30,13 @@ import {
   LocationOn,
   AttachMoney,
   Description,
-  Check
-} from '@mui/icons-material';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { useNotification } from '../components/NotificationSystem';
-import LoadingSpinner from '../components/LoadingSpinner';
-import propertyService from '../services/propertyService';
+  Check,
+} from "@mui/icons-material";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { useNotification } from "../components/NotificationSystem";
+import LoadingSpinner from "../components/LoadingSpinner";
+import propertyService from "../services/propertyService";
 
 const MotionPaper = motion(Paper);
 const MotionCard = motion(Card);
@@ -48,94 +48,94 @@ const AddPropertyPage = () => {
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState([]);
   const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    address: '',
-    suburb: '',
-    city: '',
-    price: '',
-    listingType: 'Sale',
-    bedrooms: '',
-    bathrooms: '',
-    carSpots: '',
-    features: []
+    title: "",
+    description: "",
+    address: "",
+    suburb: "",
+    city: "",
+    price: "",
+    listingType: "Sale",
+    bedrooms: "",
+    bathrooms: "",
+    carSpots: "",
+    features: [],
   });
-  const [newFeature, setNewFeature] = useState('');
+  const [newFeature, setNewFeature] = useState("");
 
   const steps = [
     {
-      label: 'Basic Information',
+      label: "Basic Information",
       icon: <Home />,
-      description: 'Property title and description'
+      description: "Property title and description",
     },
     {
-      label: 'Location Details',
+      label: "Location Details",
       icon: <LocationOn />,
-      description: 'Address and location information'
+      description: "Address and location information",
     },
     {
-      label: 'Property Details',
+      label: "Property Details",
       icon: <AttachMoney />,
-      description: 'Price, type, and specifications'
+      description: "Price, type, and specifications",
     },
     {
-      label: 'Images & Features',
+      label: "Images & Features",
       icon: <Description />,
-      description: 'Upload images and add features'
-    }
+      description: "Upload images and add features",
+    },
   ];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
-    const newImages = files.map(file => ({
+    const newImages = files.map((file) => ({
       file,
       url: URL.createObjectURL(file),
-      id: Date.now() + Math.random()
+      id: Date.now() + Math.random(),
     }));
-    setImages(prev => [...prev, ...newImages]);
+    setImages((prev) => [...prev, ...newImages]);
   };
 
   const removeImage = (imageId) => {
-    setImages(prev => {
-      const imageToRemove = prev.find(img => img.id === imageId);
+    setImages((prev) => {
+      const imageToRemove = prev.find((img) => img.id === imageId);
       if (imageToRemove) {
         URL.revokeObjectURL(imageToRemove.url);
       }
-      return prev.filter(img => img.id !== imageId);
+      return prev.filter((img) => img.id !== imageId);
     });
   };
 
   const addFeature = () => {
     if (newFeature.trim() && !formData.features.includes(newFeature.trim())) {
-      setFormData(prev => ({
+      setFormData((prev) => ({
         ...prev,
-        features: [...prev.features, newFeature.trim()]
+        features: [...prev.features, newFeature.trim()],
       }));
-      setNewFeature('');
+      setNewFeature("");
     }
   };
 
   const removeFeature = (feature) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      features: prev.features.filter(f => f !== feature)
+      features: prev.features.filter((f) => f !== feature),
     }));
   };
 
   const handleNext = () => {
-    setActiveStep(prev => prev + 1);
+    setActiveStep((prev) => prev + 1);
   };
 
   const handleBack = () => {
-    setActiveStep(prev => prev - 1);
+    setActiveStep((prev) => prev - 1);
   };
 
   const validateStep = (step) => {
@@ -156,13 +156,13 @@ const AddPropertyPage = () => {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      // Convert images to base64 URLs for storage
+      // Convert uploaded images to base64 URLs
       const imageUrls = await Promise.all(
-        images.map(image => {
+        images.map((image) => {
           return new Promise((resolve) => {
             const reader = new FileReader();
             reader.onload = (e) => resolve(e.target.result);
-            reader.readAsDataURL(image);
+            reader.readAsDataURL(image.file);
           });
         })
       );
@@ -173,20 +173,23 @@ const AddPropertyPage = () => {
         bedrooms: parseInt(formData.bedrooms),
         bathrooms: parseInt(formData.bathrooms),
         carSpots: parseInt(formData.carSpots) || 0,
-        imageUrls: imageUrls
+        imageUrls: imageUrls,
       };
 
       await propertyService.createProperty(propertyData);
-      
-      showSuccess('Property added successfully!', {
-        title: 'Success',
-        duration: 5000
+
+      showSuccess("Property added successfully!", {
+        title: "Success",
+        duration: 5000,
       });
-      
-      navigate('/properties');
+
+      navigate("/properties");
     } catch (error) {
-      console.error('Error adding property:', error);
-      showError(error.response?.data?.message || 'Failed to add property. Please try again.');
+      console.error("Error adding property:", error);
+      showError(
+        error.response?.data?.message ||
+          "Failed to add property. Please try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -336,18 +339,21 @@ const AddPropertyPage = () => {
         return (
           <Grid container spacing={3}>
             <Grid item xs={12}>
+              <Typography variant="h6" gutterBottom>
+                Property Images
+              </Typography>
               <Box
                 sx={{
-                  border: '2px dashed #ccc',
+                  border: "2px dashed #ccc",
                   borderRadius: 2,
-                  p: 3,
-                  textAlign: 'center',
-                  cursor: 'pointer',
-                  '&:hover': {
-                    borderColor: 'primary.main',
-                    backgroundColor: 'rgba(25,118,210,0.04)'
+                  p: 4,
+                  textAlign: "center",
+                  cursor: "pointer",
+                  "&:hover": {
+                    borderColor: "primary.main",
+                    backgroundColor: "rgba(25, 118, 210, 0.04)",
                   },
-                  transition: 'all 0.2s ease'
+                  transition: "all 0.2s ease",
                 }}
                 component="label"
               >
@@ -356,9 +362,11 @@ const AddPropertyPage = () => {
                   multiple
                   accept="image/*"
                   onChange={handleImageUpload}
-                  style={{ display: 'none' }}
+                  style={{ display: "none" }}
                 />
-                <CloudUpload sx={{ fontSize: 48, color: 'primary.main', mb: 2 }} />
+                <CloudUpload
+                  sx={{ fontSize: 48, color: "primary.main", mb: 2 }}
+                />
                 <Typography variant="h6" gutterBottom>
                   Upload Property Images
                 </Typography>
@@ -379,25 +387,26 @@ const AddPropertyPage = () => {
                       <MotionCard
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        sx={{ position: 'relative' }}
+                        sx={{ position: "relative" }}
                       >
                         <CardMedia
                           component="img"
                           height="120"
                           image={image.url}
                           alt="Property"
+                          sx={{ objectFit: "cover" }}
                         />
                         <IconButton
                           onClick={() => removeImage(image.id)}
                           sx={{
-                            position: 'absolute',
+                            position: "absolute",
                             top: 4,
                             right: 4,
-                            backgroundColor: 'rgba(0,0,0,0.7)',
-                            color: 'white',
-                            '&:hover': {
-                              backgroundColor: 'rgba(0,0,0,0.9)',
-                            }
+                            backgroundColor: "rgba(0,0,0,0.7)",
+                            color: "white",
+                            "&:hover": {
+                              backgroundColor: "rgba(0,0,0,0.9)",
+                            },
                           }}
                           size="small"
                         >
@@ -414,7 +423,7 @@ const AddPropertyPage = () => {
               <Typography variant="h6" gutterBottom>
                 Property Features
               </Typography>
-              <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
+              <Box sx={{ display: "flex", gap: 1, mb: 2 }}>
                 <TextField
                   fullWidth
                   label="Add Feature"
@@ -422,7 +431,7 @@ const AddPropertyPage = () => {
                   onChange={(e) => setNewFeature(e.target.value)}
                   placeholder="e.g., Swimming Pool, Garden, Garage"
                   onKeyPress={(e) => {
-                    if (e.key === 'Enter') {
+                    if (e.key === "Enter") {
                       e.preventDefault();
                       addFeature();
                     }
@@ -437,7 +446,7 @@ const AddPropertyPage = () => {
                   Add
                 </Button>
               </Box>
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
                 {formData.features.map((feature) => (
                   <Chip
                     key={feature}
@@ -472,8 +481,8 @@ const AddPropertyPage = () => {
           sx={{ p: 4, borderRadius: 3 }}
         >
           {/* Header */}
-          <Box sx={{ textAlign: 'center', mb: 4 }}>
-            <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 2 }}>
+          <Box sx={{ textAlign: "center", mb: 4 }}>
+            <Typography variant="h4" sx={{ fontWeight: "bold", mb: 2 }}>
               Add New Property
             </Typography>
             <Typography variant="body1" color="text.secondary">
@@ -488,9 +497,10 @@ const AddPropertyPage = () => {
                 <StepLabel
                   icon={step.icon}
                   sx={{
-                    '& .MuiStepLabel-iconContainer': {
-                      color: activeStep >= index ? 'primary.main' : 'text.disabled'
-                    }
+                    "& .MuiStepLabel-iconContainer": {
+                      color:
+                        activeStep >= index ? "primary.main" : "text.disabled",
+                    },
                   }}
                 >
                   <Typography variant="h6">{step.label}</Typography>
@@ -499,10 +509,8 @@ const AddPropertyPage = () => {
                   </Typography>
                 </StepLabel>
                 <StepContent>
-                  <Box sx={{ mt: 2, mb: 3 }}>
-                    {renderStepContent(index)}
-                  </Box>
-                  <Box sx={{ display: 'flex', gap: 2 }}>
+                  <Box sx={{ mt: 2, mb: 3 }}>{renderStepContent(index)}</Box>
+                  <Box sx={{ display: "flex", gap: 2 }}>
                     <Button
                       disabled={index === 0}
                       onClick={handleBack}
@@ -535,13 +543,13 @@ const AddPropertyPage = () => {
           </Stepper>
 
           {activeStep === steps.length && (
-            <Box sx={{ textAlign: 'center', mt: 4 }}>
+            <Box sx={{ textAlign: "center", mt: 4 }}>
               <Alert severity="success" sx={{ mb: 2 }}>
                 Property added successfully!
               </Alert>
               <Button
                 variant="contained"
-                onClick={() => navigate('/properties')}
+                onClick={() => navigate("/properties")}
               >
                 View Properties
               </Button>

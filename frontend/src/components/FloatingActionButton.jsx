@@ -59,7 +59,7 @@ const FloatingActionButton = () => {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'Real Estate Portal',
+          title: 'ApnaGhar',
           text: 'Check out this amazing real estate platform!',
           url: window.location.href,
         });

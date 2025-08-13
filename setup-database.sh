@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🚀 Setting up Real Estate Portal Database..."
+echo "🚀 Setting up ApnaGhar Database..."
 
 # Start Docker containers
 echo "📦 Starting MySQL container..."

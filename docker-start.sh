@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🚀 Starting Real Estate Portal with Docker..."
+echo "🚀 Starting ApnaGhar with Docker..."
 
 # Stop any existing containers
 echo "🛑 Stopping existing containers..."
@@ -28,7 +28,7 @@ echo "📝 Recent logs:"
 docker compose logs --tail=20
 
 echo ""
-echo "✅ Real Estate Portal is starting up!"
+echo "✅ ApnaGhar is starting up!"
 echo ""
 echo "🌐 Access points:"
 echo "   Frontend: http://localhost:3000"

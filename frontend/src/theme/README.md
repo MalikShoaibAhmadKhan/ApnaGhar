@@ -1,6 +1,6 @@
 # Color Consistency Implementation
 
-This document outlines the comprehensive color consistency system implemented across the Real Estate Portal application.
+This document outlines the comprehensive color consistency system implemented across the ApnaGhar application.
 
 ## Overview
 
